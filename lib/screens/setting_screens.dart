@@ -1,7 +1,20 @@
 import 'package:flutter/material.dart';
 
 class SettingScreens extends StatelessWidget {
-  const SettingScreens({super.key});
+  final List<Color> items = [
+    Color(0xff008D7F),
+    Color(0xff7102BB),
+    Color(0xffF44336),
+    Color(0xffE91E63),
+    Color(0xff9C27b0),
+    Color(0xff673AB7),
+    Color(0xff2196F3),
+    Color(0xff00BCD4),
+    Color(0xff009688),
+    Color(0xff04CAF50),
+    Color(0xff8BC34A),
+  ];
+  SettingScreens({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +90,7 @@ class SettingScreens extends StatelessWidget {
                 decoration: BoxDecoration(
                   border: Border.all(color: Color(0xff008D7F)),
                   borderRadius: BorderRadius.circular(5),
-                 
+
                   color: Color(0xff008D7F).withOpacity(0.2),
                 ),
                 child: Padding(
@@ -130,6 +143,71 @@ class SettingScreens extends StatelessWidget {
               ),
             ),
             SizedBox(height: 20),
+            Row(
+              children: [
+                Container(
+                  height: 100,
+                  width: 96,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.withOpacity(0.5)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("0", style: TextStyle(fontSize: 20)),
+                      SizedBox(height: 5),
+                      Text("Question"),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 96,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.withOpacity(0.5)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("0", style: TextStyle(fontSize: 20)),
+                      SizedBox(height: 5),
+                      Text("Answer"),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 96,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.withOpacity(0.5)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("0", style: TextStyle(fontSize: 20)),
+                      SizedBox(height: 5),
+                      Text("Notes"),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.withOpacity(0.5)),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text("0", style: TextStyle(fontSize: 20)),
+                      SizedBox(height: 5),
+                      Text("0thers"),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Container(
@@ -159,16 +237,114 @@ class SettingScreens extends StatelessWidget {
                       SizedBox(height: 20),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Row( 
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Fourth Semester"),
-                            Icon(Icons.arrow_drop_down,size: 30,),
+                            Icon(Icons.arrow_drop_down, size: 30),
                           ],
                         ),
                       ),
                     ],
                   ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+              child: Container(
+                height: 130,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey, width: 0.2),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Job Information",
+                            style: TextStyle(
+                              color: Color(0xff008D7F),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(children: [Text("Show Jobs on Main Screen")]),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Container(
+                height: 350,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey, width: 0.2),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            "Theme",
+                            style: TextStyle(
+                              color: Color(0xff008D7F),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("System Theme"),
+                          Icon(Icons.arrow_drop_down, size: 30),
+                        ],
+                      ),
+                    ),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 30,
+                          vertical: 15,
+                        ),
+                        child: GridView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 6,
+                                mainAxisSpacing: 15,
+                                crossAxisSpacing: 15,
+                                childAspectRatio: 1,
+                              ),
+                          itemCount: items.length,
+                          itemBuilder: (context, index) {
+                            return CircleAvatar(backgroundColor: items[index]);
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

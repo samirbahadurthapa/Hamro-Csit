@@ -122,7 +122,7 @@ class HomeScreen extends StatelessWidget {
                               child: Icon(
                                 Icons.logout,
                                 color: Color(0xff008D7F),
-                              ),
+                          ),
                             ),
                           ],
                         ),
