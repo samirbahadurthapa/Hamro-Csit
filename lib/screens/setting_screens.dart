@@ -34,7 +34,7 @@ class _SettingScreensState extends State<SettingScreens> {
     Color(0xff795548),
   ];
 
-  final List<String> semester = ["assets/pdfs/chapter_1.pdf"];
+  final List<String> semester = ["assets/pdfs/introductioin.pdf"];
   final List<Map<String, dynamic>> iconList = [
     {'icon': Icons.share, 'label': 'Tell Your Friend'},
     {'icon': Icons.star, 'label': 'Rate Application'},
