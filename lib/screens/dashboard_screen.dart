@@ -69,7 +69,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             left: 160,
             child: InkWell(
               onTap: () {
-                _stateChange(2); 
+                Navigator.push( 
+                  context,MaterialPageRoute(builder: (context)=>AddScreen())
+                );
                 
               },
               child: Container(
