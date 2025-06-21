@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamrocsit_app/screens/article_screen.dart';
 import 'package:hamrocsit_app/screens/compilers_screen.dart';
 import 'package:hamrocsit_app/screens/home_screen.dart';
 import 'package:hamrocsit_app/screens/setting_screens.dart'; 
@@ -17,7 +18,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         SettingScreens(),
          
      
-        Center(child:Text("Hello 4")),
+        ArticleScreen(),
         Center(child:Text("Hello 5")),
       ]; 
       void _stateChange(value){ 

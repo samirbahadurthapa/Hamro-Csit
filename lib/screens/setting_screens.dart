@@ -1,6 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:hamrocsit_app/screens/pdf_viewers_screen.dart';
 
-class SettingScreens extends StatelessWidget {
+class SettingScreens extends StatefulWidget {
+  SettingScreens({super.key});
+
+  @override
+  State<SettingScreens> createState() => _SettingScreensState();
+}
+
+class _SettingScreensState extends State<SettingScreens> {
+  bool _istoggled = false;
+  bool _istoogled1 = false;
+  bool _istoggled2 = false;
+
   final List<Color> items = [
     Color(0xff008D7F),
     Color(0xff7102BB),
@@ -9,12 +21,31 @@ class SettingScreens extends StatelessWidget {
     Color(0xff9C27b0),
     Color(0xff673AB7),
     Color(0xff2196F3),
+    Color(0xff03A9f4),
     Color(0xff00BCD4),
     Color(0xff009688),
     Color(0xff04CAF50),
     Color(0xff8BC34A),
+    Color(0xff3F51B5),
+    Color(0xff607D8B),
+    Color(0xffFFC107),
+    Color(0xffFF9800),
+    Color(0xffFF5722),
+    Color(0xff795548),
   ];
-  SettingScreens({super.key});
+
+  final List<String> semester = ["assets/pdfs/chapter_1.pdf"];
+  final List<Map<String, dynamic>> iconList = [
+    {'icon': Icons.share, 'label': 'Tell Your Friend'},
+    {'icon': Icons.star, 'label': 'Rate Application'},
+    {'icon': Icons.person_2_outlined, 'label': 'View Profile'},
+    {'icon': Icons.person_3_outlined, 'label': 'Edit Profile'},
+    {'icon': Icons.table_view_outlined, 'label': 'Switch Profile'},
+    {'icon': Icons.info_outline, 'label': 'About us'},
+    {'icon': Icons.person_2_outlined, 'label': 'Support'},
+    {'icon': Icons.info, 'label': 'Privacy Policy'},
+    {'icon': Icons.logout_sharp, 'label': 'Logout Account'},
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -241,7 +272,83 @@ class SettingScreens extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text("Fourth Semester"),
-                            Icon(Icons.arrow_drop_down, size: 30),
+                            InkWell(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  backgroundColor: Colors.white,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.zero,
+                                  ),
+                                  context: context,
+                                  builder: (context) {
+                                    return SizedBox(
+                                      height: 400,
+
+                                      width: double.maxFinite,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(height: 15),
+                                          Text(
+                                            "Choose Option",
+                                            style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                          SizedBox(height: 10),
+                                          Expanded(
+                                            child: ListView.builder(
+                                              itemCount: semester.length,
+                                              itemBuilder: (context, index) {
+                                                return Padding(
+                                                  padding:
+                                                      const EdgeInsets.symmetric(
+                                                        horizontal: 18,
+                                                        vertical: 10,
+                                                      ),
+                                                  child: InkWell(
+                                                    onTap: () {
+                                                      Navigator.push(
+                                                        context,
+                                                        MaterialPageRoute(
+                                                          builder:
+                                                              (
+                                                                _,
+                                                              ) => PdfViewersScreen(
+                                                                pdfs:
+                                                                    semester[index],
+                                                              ),
+                                                        ),
+                                                      );
+                                                    },
+                                                    child: Row(
+                                                      children: [
+                                                        Icon(
+                                                          Icons
+                                                              .arrow_right_sharp,
+                                                        ),
+                                                        SizedBox(width: 7),
+                                                        Text(
+                                                          semester[index],
+                                                          style: TextStyle(
+                                                            fontSize: 15,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+                              },
+                              child: Icon(Icons.arrow_drop_down, size: 30),
+                            ),
                           ],
                         ),
                       ),
@@ -253,7 +360,7 @@ class SettingScreens extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
               child: Container(
-                height: 130,
+                height: 140,
                 width: double.maxFinite,
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -265,6 +372,7 @@ class SettingScreens extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.all(15.0),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
                             "Job Information",
@@ -278,13 +386,84 @@ class SettingScreens extends StatelessWidget {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Row(children: [Text("Show Jobs on Main Screen")]),
+                      padding: const EdgeInsets.all(17.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Show Jobs on Main Screen",style: TextStyle(fontSize: 16),),
+                          Transform.scale(
+                            scale: 0.7,
+                            child: Switch(
+                              value: _istoggled,
+                              onChanged: (value) {
+                                setState(() {
+                                  _istoggled = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),
               ),
             ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Container(
+                height: 140,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey, width: 0.2),
+                  borderRadius: BorderRadius.circular(5),
+                ),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(15.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Notifcation",
+                            style: TextStyle(
+                              color: Color(0xff008D7F),
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+
+                    Padding(
+                      padding: const EdgeInsets.all(18.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text("Notifcation", style: TextStyle(fontSize: 18)),
+                          Transform.scale(
+                            scale: 0.7,
+                            child: Switch(
+                              value: _istoogled1,
+                              onChanged: (value) {
+                                setState(() {
+                                  _istoogled1 = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: Container(
@@ -313,7 +492,7 @@ class SettingScreens extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -322,29 +501,164 @@ class SettingScreens extends StatelessWidget {
                         ],
                       ),
                     ),
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 30,
-                          vertical: 15,
+                    SizedBox(
+                      height: 170,
+                      child: Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 30,
+                            vertical: 15,
+                          ),
+                          child: GridView.builder(
+                            physics: NeverScrollableScrollPhysics(),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 6,
+                                  mainAxisSpacing: 15,
+                                  crossAxisSpacing: 20,
+                                  childAspectRatio: 1,
+                                ),
+                            itemCount: items.length,
+                            itemBuilder: (context, index) {
+                              return CircleAvatar(
+                                backgroundColor: items[index],
+                              );
+                            },
+                          ),
                         ),
-                        child: GridView.builder(
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate:
-                              SliverGridDelegateWithFixedCrossAxisCount(
-                                crossAxisCount: 6,
-                                mainAxisSpacing: 15,
-                                crossAxisSpacing: 15,
-                                childAspectRatio: 1,
-                              ),
-                          itemCount: items.length,
-                          itemBuilder: (context, index) {
-                            return CircleAvatar(backgroundColor: items[index]);
-                          },
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 20),
+                      child: Container(
+                        height: 60,
+                        width: double.maxFinite,
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.circular(5),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 10,
+                          ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Color Code"),
+                              SizedBox(height: 5),
+                              Text("#795548"),
+                            ],
+                          ),
                         ),
                       ),
                     ),
                   ],
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: Container(
+                height: 130,
+                width: double.maxFinite,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.grey.shade300),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Download Manager",
+                        style: TextStyle(
+                          color: Color(0xff008D7F),
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Clear All Data on logout",
+                            style: TextStyle(fontSize: 15),
+                          ),
+                          Transform.scale(
+                            scale: 0.7,
+                            child: Switch(
+                              value: _istoggled2,
+                              onChanged: (value) {
+                                setState(() {
+                                  _istoggled2 = value;
+                                });
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      Center(
+                        child: Text(
+                          "Clear Data",
+                          style: TextStyle(
+                            color: Color(0xff008D7F),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: SizedBox(
+                height: 580,
+                child: Container(
+                  width: double.maxFinite,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: Colors.grey.shade400),
+                  ),
+
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 225, top: 10),
+                        child: Text(
+                          "More Menu",
+                          style: TextStyle(
+                            color: Color(0xff008D7F),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Expanded(
+                        child: ListView.builder(
+                          physics: NeverScrollableScrollPhysics(),
+                          itemCount: iconList.length,
+                          itemBuilder: (context, index) {
+                            return ListTile(
+                              leading: Icon(
+                                iconList[index]['icon'],
+                                color: Color(0xff008D7F),
+                              ),
+                              title: Text(iconList[index]['label']),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

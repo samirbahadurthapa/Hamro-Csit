@@ -5,7 +5,8 @@ import 'package:hamrocsit_app/screens/home_screen.dart';
 import 'package:hamrocsit_app/screens/setting_screens.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const MyApp()); 
+  WidgetsFlutterBinding.ensureInitialized();
 }
 
 class MyApp extends StatelessWidget {
