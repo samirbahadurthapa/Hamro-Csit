@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hamrocsit_app/data/semester_data.dart';
+import 'package:hamrocsit_app/semester/subjects_display_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final List<Map<String, dynamic>> items = [
@@ -122,7 +124,7 @@ class HomeScreen extends StatelessWidget {
                               child: Icon(
                                 Icons.logout,
                                 color: Color(0xff008D7F),
-                          ),
+                              ),
                             ),
                           ],
                         ),
@@ -186,10 +188,10 @@ class HomeScreen extends StatelessWidget {
               height: 200,
 
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10,),
+                padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: GridView.builder(
                   padding: EdgeInsets.zero,
-                  itemCount: 8,
+                  itemCount: semesterData.length,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 4,
                     mainAxisSpacing: 10,
@@ -197,25 +199,39 @@ class HomeScreen extends StatelessWidget {
                     childAspectRatio: 1,
                   ),
                   itemBuilder: (context, index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Color(0xff008D7F).withOpacity(0.2),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            items[index]["image"],
-                            color: Color(0xff008D7F),
-                            height: 25,
-                            width: 25,
+                    return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder:
+                                (_) => SubjectsDisplayScreen(
+                                  subjects: semesterData[index].subjects,
+                                ),
                           ),
-                          SizedBox(height: 5),
-                          Text(
-                            textAlign: TextAlign.center,
-                            items[index]['text'],
-                          ),
-                        ],
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Color(0xff008D7F).withOpacity(0.2),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              semesterData[index].image,
+                              color: Color(0xff008D7F),
+                              height: 25,
+                              width: 25,
+                            ),
+                            SizedBox(height: 5),
+                            Text(
+                              textAlign: TextAlign.center,
+                              semesterData[index].semester,
+                            ), 
+                          Text("Semester",style: TextStyle(color: Colors.black,fontSize: 8),)
+                          ],
+                        ),
                       ),
                     );
                   },
@@ -416,23 +432,20 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ),
 
-                      // title: Column(
-                      //   children: [
-                      //     Text(
-                      //       notices[index]["label"],
-                      //       style: TextStyle(fontSize: 14),
-                      //     ),
-                      //   ],
-                      // ),
-                      // subtitle: Text(notices[index]["date"]),
-                      title: Column( 
+                      title: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             notices[index]["label"],
                             style: TextStyle(fontSize: 14),
                           ),
-                          Text(notices[index]["date"],style: TextStyle(fontSize: 13,color: Colors.grey[600]),),
+                          Text(
+                            notices[index]["date"],
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: Colors.grey[600],
+                            ),
+                          ),
                         ],
                       ),
                     );
