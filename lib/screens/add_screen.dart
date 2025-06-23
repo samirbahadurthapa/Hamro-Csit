@@ -8,18 +8,24 @@ class AddScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xff008D7F),
-        title: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 5.0),
-         child: Column(  
-          crossAxisAlignment: CrossAxisAlignment.start,
+        title: Row(
           children: [ 
-            Text("Ask Question",style: TextStyle(color: Colors.white,fontSize: 18),), 
-            Text("Have a Question from Csit Syallabus?",style: TextStyle(color: Colors.grey[200],fontSize: 14),)
+            Icon(Icons.arrow_back,color: Colors.white,),
+            Padding(
+              padding: const EdgeInsets.only(left: 25),
+              child: Column(  
+                
+               crossAxisAlignment: CrossAxisAlignment.start,
+               children: [  
+                 Text("Ask Question",style: TextStyle(color: Colors.white,fontSize: 18),), 
+                 Text("Have a Question from Csit Syallabus?",style: TextStyle(color: Colors.grey[200],fontSize: 14)),
+               ],
+              ),
+            ),
           ],
-         ),
         ),
       ), 
-      body: Column( 
+      body: ListView( 
         children: [  
           SizedBox(height: 30,),
           Padding(

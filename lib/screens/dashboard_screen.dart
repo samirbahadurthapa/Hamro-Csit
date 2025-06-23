@@ -17,6 +17,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Widget> _pages = [
     HomeScreen(),
     CompilersScreen(),
+    AddScreen(),
     ArticleScreen(),
     SettingScreens(),
   ];
@@ -58,8 +59,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   _custumBottonNavigation(Icons.search, 1),
                   SizedBox(width: 50),
 
-                  _custumBottonNavigation(Icons.car_crash, 2),
-                  _custumBottonNavigation(Icons.person, 3),
+                  _custumBottonNavigation(Icons.car_crash,3),
+                  _custumBottonNavigation(Icons.person, 4),
                 ],
               ),
             ),
@@ -69,10 +70,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
             left: 160,
             child: InkWell(
               onTap: () {
-                Navigator.push( 
-                  context,MaterialPageRoute(builder: (context)=>AddScreen())
-                );
-                
+              
+                _stateChange(2);
               },
               child: Container(
                 height: 55,

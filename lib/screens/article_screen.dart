@@ -6,7 +6,8 @@ class ArticleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      appBar: AppBar( 
+        
         backgroundColor: Color(0xff008D7F),
         title: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
