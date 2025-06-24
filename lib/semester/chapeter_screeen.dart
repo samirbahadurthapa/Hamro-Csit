@@ -51,7 +51,7 @@ class ChapeterScreeen extends StatelessWidget {
                         children: [
                           Text(
                             chapters[index].title,
-                            style: TextStyle(fontSize: 16),
+                            style: TextStyle(fontSize: 15),
                           ),
                         ],
                       ),
